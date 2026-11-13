@@ -1,0 +1,39 @@
+AI_LOG.txt
+
+AI Usage Log 
+
+1. Patroller Bug Fix
+
+Question to AI: The Patroller enemy was flying back and forth instead of moving normally. What could cause this problem in Unity?
+
+AI Help: AI suggested checking the Rigidbody2D and Collider2D components.
+
+My Action: I removed the Box Collider 2D component and added it again. After that, the problem disappeared.
+
+2. Patroller Settings
+
+Question to AI: How can I properly adjust the enemy's movement speed and attack distance?
+
+AI Help: AI explained how Patrol Speed and Attack Range affect enemy behaviour.
+
+My Action: I changed Patrol Speed from 2 to 1.7 and Attack Range from 2.3 to 2.
+
+3. Obstacle Mask
+
+Question to AI: How can I prevent the Patroller from seeing the player through walls?
+
+AI Help: AI explained how Layer Masks and line-of-sight detection work.
+
+My Action: I assigned the Wall layer to the Obstacle Mask.
+
+4. Testing Enemy Behaviour
+
+Question to AI: What should I test after fixing the Patroller?
+
+AI Help: AI suggested checking patrol movement, player detection, wall collisions and attack behaviour.
+
+My Action: I used these suggestions as a checklist when testing the enemy.
+
+AI Usage Declaration
+
+AI was used as a learning assistant to understand Unity concepts, troubleshoot errors and improve enemy behaviour. I tested the suggested solutions myself and made the changes manually in Unity.

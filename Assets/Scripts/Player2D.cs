@@ -1,14 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using System.Collections; 
+using System.Collections;
 
 public class Player2D : MonoBehaviour
 {
-    public float speed = 7f;
-    public float jumpForce = 12f;
-    
-    public SimpleJoystick joystick; // Джойстик
+    public PlayerStats stats;           // карточка игрока (speed, jumpForce)
+    public SimpleJoystick joystick;     // джойстик
 
     public Animator _animator;
     public TextMeshProUGUI statusText;
@@ -18,14 +16,13 @@ public class Player2D : MonoBehaviour
     private bool onGround;
     private int coins;
     private int coinsTotal;
-    private bool isWon = false; 
+    private bool isWon = false;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        
-        // Аниматорды автоматты түрде табу
+
         if (_animator == null) _animator = GetComponent<Animator>();
     }
 
@@ -37,9 +34,8 @@ public class Player2D : MonoBehaviour
 
     void Update()
     {
-        if (isWon) return; 
+        if (isWon) return;
 
-        // Персонажды клавиатура арқылы секірту (Пробел)
         if (Input.GetKeyDown(KeyCode.Space) && onGround)
         {
             Jump();
@@ -48,37 +44,34 @@ public class Player2D : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isWon) return; 
+        if (isWon) return;
 
-        // Клавиатура мен Джойстикті қатар қосу
         float x = Input.GetAxisRaw("Horizontal");
-        if (joystick != null && joystick.Horizontal() != 0) 
+        if (joystick != null && joystick.Horizontal() != 0)
         {
             x = joystick.Horizontal();
         }
 
-        rb.linearVelocity = new Vector2(x * speed, rb.linearVelocity.y);
-        
-        if (x != 0) 
+        rb.linearVelocity = new Vector2(x * stats.speed, rb.linearVelocity.y);
+
+        if (x != 0)
         {
-            _animator.SetBool("isRunning", true);   
-            
-            // Бағытқа қарай бетін бұру (flipX)
+            _animator.SetBool("isRunning", true);
+
             if (x > 0) spriteRenderer.flipX = false;
             else if (x < 0) spriteRenderer.flipX = true;
         }
-        else 
+        else
         {
-            _animator.SetBool("isRunning", false); 
+            _animator.SetBool("isRunning", false);
         }
     }
 
-    // Секіру функциясы (Экрандағы түйме және Пробел үшін)
     public void Jump()
     {
         if (onGround && !isWon)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, stats.jumpForce);
             onGround = false;
         }
     }
@@ -96,7 +89,7 @@ public class Player2D : MonoBehaviour
 
         if (other.CompareTag("Exit"))
         {
-            if (coins >= coinsTotal)
+            if (!LevelController.Current.requireAllApples || coins >= coinsTotal)
             {
                 StartCoroutine(WinRoutine());
             }
@@ -106,17 +99,17 @@ public class Player2D : MonoBehaviour
             }
         }
     }
-    
+
     IEnumerator WinRoutine()
     {
         isWon = true;
-        rb.linearVelocity = Vector2.zero; 
+        rb.linearVelocity = Vector2.zero;
         UpdateUI("ВЫ ВЫИГРАЛИ! ");
 
-        yield return new WaitForSeconds(3f); 
-       
-        // Босс аренасына өту
-        SceneManager.LoadScene("Level3"); 
+        SaveSystem.LevelCompleted(LevelController.Current.levelNumber, coins);
+
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(LevelController.Current.nextScene);
     }
 
     void OnCollisionEnter2D(Collision2D other)

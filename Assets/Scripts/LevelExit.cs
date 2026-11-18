@@ -3,13 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class LevelExit : MonoBehaviour
 {
-    public string nextLevelName; 
-
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            SceneManager.LoadScene(nextLevelName);
-        }
+        if (!other.CompareTag("Player")) return;
+        SaveSystem.LevelCompleted(LevelController.Current.levelNumber, 0);
+        SceneManager.LoadScene(LevelController.Current.nextScene);
     }
 }

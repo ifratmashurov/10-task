@@ -1635,6 +1635,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1827149006}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &870151313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 870151315}
+  - component: {fileID: 870151314}
+  m_Layer: 0
+  m_Name: LevelController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &870151314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870151313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92c4f811200e4456acb03ea0428324d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelController
+  data: {fileID: 11400000, guid: 38477069e80234360bfe8c3caf26fb4e, type: 2}
+  timerText: {fileID: 0}
+--- !u!4 &870151315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870151313}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 905, y: 455, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &975435873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2722,8 +2768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74051ad16b1a64030b45ac7a0b4d1ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player2D
-  speed: 7
-  jumpForce: 12
+  stats: {fileID: 11400000, guid: bcf99502266534527ad5f0ab010bcb96, type: 2}
   joystick: {fileID: 1791414623}
   _animator: {fileID: 1382155334}
   statusText: {fileID: 0}
@@ -2761,7 +2806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db2d6bbd4264ff6b6a409255d50217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  maxHealth: 3
+  stats: {fileID: 11400000, guid: bcf99502266534527ad5f0ab010bcb96, type: 2}
   hpText: {fileID: 1006873653}
   hearts:
   - {fileID: 1076723685}
@@ -3953,8 +3998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968509c420734403fa98d8915fd8ddd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss
-  nextScene: Level4
-  maxHealth: 8
+  stats: {fileID: 11400000, guid: cab6937ee3ef94988b08ee42a862ab77, type: 2}
   enemyBulletPrefab: {fileID: 5455730532009030264, guid: b92dbf6e4f66542b78c6fd6445b5ac1c, type: 3}
   firePoint: {fileID: 805231032}
   bossHpSlider: {fileID: 975435875}
@@ -4475,3 +4519,4 @@ SceneRoots:
   - {fileID: 1332483300}
   - {fileID: 1827149006}
   - {fileID: 1290149789}
+  - {fileID: 870151315}

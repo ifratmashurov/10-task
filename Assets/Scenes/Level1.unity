@@ -363,6 +363,52 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 22.288525, y: 1.0164762}
   m_EdgeRadius: 0
+--- !u!1 &223980449
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 223980451}
+  - component: {fileID: 223980450}
+  m_Layer: 0
+  m_Name: LevelController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &223980450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223980449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92c4f811200e4456acb03ea0428324d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelController
+  data: {fileID: 11400000, guid: 5794c098ab1bd4bb59e2259ea68ffc59, type: 2}
+  timerText: {fileID: 0}
+--- !u!4 &223980451
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223980449}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 905, y: 455, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &391563404
 GameObject:
   m_ObjectHideFlags: 0
@@ -2675,6 +2721,7 @@ GameObject:
   - component: {fileID: 1382155334}
   - component: {fileID: 1382155335}
   - component: {fileID: 1382155336}
+  - component: {fileID: 1382155337}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -2833,8 +2880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74051ad16b1a64030b45ac7a0b4d1ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player2D
-  speed: 7
-  jumpForce: 12
+  stats: {fileID: 11400000, guid: bcf99502266534527ad5f0ab010bcb96, type: 2}
   joystick: {fileID: 1668959881}
   _animator: {fileID: 1382155334}
   statusText: {fileID: 0}
@@ -2893,6 +2939,20 @@ MonoBehaviour:
   hpText: {fileID: 0}
   blinkCount: 10
   blinkInterval: 0.2
+--- !u!114 &1382155337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382155328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff822ce170e443018c0100c64159439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelExit
+  nextLevelName: Level2
+  levelNumber: 1
 --- !u!1 &1435615498
 GameObject:
   m_ObjectHideFlags: 0
@@ -3046,6 +3106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelExit
   nextLevelName: Level2
+  levelNumber: 1
 --- !u!1 &1454776750
 GameObject:
   m_ObjectHideFlags: 0
@@ -3826,3 +3887,4 @@ SceneRoots:
   - {fileID: 1332483300}
   - {fileID: 1685729506}
   - {fileID: 134308180}
+  - {fileID: 223980451}

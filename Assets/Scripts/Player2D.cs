@@ -8,6 +8,7 @@ public class Player2D : MonoBehaviour
     public PlayerStats stats;           // карточка игрока (speed, jumpForce)
     public SimpleJoystick joystick;     // джойстик
 
+    public SfxPlayer sfx;
     public Animator _animator;
     public TextMeshProUGUI statusText;
 
@@ -24,6 +25,7 @@ public class Player2D : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         if (_animator == null) _animator = GetComponent<Animator>();
+        if (sfx == null) sfx = GetComponent<SfxPlayer>();
     }
 
     void Start()
@@ -73,6 +75,7 @@ public class Player2D : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, stats.jumpForce);
             onGround = false;
+            if (sfx != null) sfx.PlayJump();          // ЗВУК: прыжок
         }
     }
 
@@ -85,6 +88,7 @@ public class Player2D : MonoBehaviour
             Destroy(other.gameObject);
             coins++;
             UpdateUI("Монеты: " + coins + " / " + coinsTotal);
+            if (sfx != null) sfx.PlayPickup();        // ЗВУК: подбор монеты
         }
 
         if (other.CompareTag("Exit"))
@@ -105,6 +109,7 @@ public class Player2D : MonoBehaviour
         isWon = true;
         rb.linearVelocity = Vector2.zero;
         UpdateUI("ВЫ ВЫИГРАЛИ! ");
+        if (sfx != null) sfx.PlayWin();               // ЗВУК: победа
 
         SaveSystem.LevelCompleted(LevelController.Current.levelNumber, coins);
 

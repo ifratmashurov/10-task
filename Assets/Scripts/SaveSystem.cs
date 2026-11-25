@@ -18,7 +18,6 @@ public static class SaveSystem
     {
         try
         {
-            Debug.Log("SAVE PATH: " + Application.persistentDataPath);
             File.WriteAllText(TmpPath, JsonUtility.ToJson(Data, true));
             File.Copy(TmpPath, FilePath, true);
             File.Delete(TmpPath);
@@ -41,6 +40,7 @@ public static class SaveSystem
             d.unlockedLevels.RemoveAll(l => l < 1 || l > TotalLevels);
             if (!d.unlockedLevels.Contains(1)) d.unlockedLevels.Add(1);
             d.musicVol = Mathf.Clamp01(d.musicVol);
+            d.sfxVol = Mathf.Clamp01(d.sfxVol);
             return d;
         }
         catch (System.Exception e)
@@ -67,6 +67,12 @@ public static class SaveSystem
     public static void SetMusicVolume(float v)
     {
         Data.musicVol = Mathf.Clamp01(v);
+        Save();
+    }
+
+    public static void SetSfxVolume(float v)
+    {
+        Data.sfxVol = Mathf.Clamp01(v);
         Save();
     }
 

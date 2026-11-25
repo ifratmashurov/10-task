@@ -1,14 +1,13 @@
-# Decisions log
+# DECISIONS.md
 
-13.11.2026 Fixed the Patroller bug: the enemy was flying back and forth instead of patrolling normally. To fix it, I removed the Box Collider 2D component and added it again. After that, the bug disappeared.
+## Week 11: Data and Saves
 
-13.11.2026 Adjusted the Patroller settings: changed Patrol Speed from `2` to `1.7` and Attack Range from `2.3` to `2`.
+2026-11-17  Moved player and boss balance numbers (health, damage, blink time, shoot interval, hit flash) out of PlayerHealth.cs and Boss.cs into PlayerStats.asset and BossStats.asset. Current HP stays in the script, not in the asset, because the asset is shared.
+2026-11-17  After moving HP to one PlayerStats asset, Level 2 got 3 lives instead of 1. Made a separate PlayerStats asset for that level and dragged it into the player's Stats field.
+2026-11-17  Boss tried to load "Level4" after death and Unity printed a build settings error. The old scene name was saved inside the scene (Inspector value beats the code value). Replaced the public string with const NextScene = "WinScene" and checked the scene name in Build Profiles.
+2026-11-18  Added volume to save.json (musicVol) and made Reset progress restore it. Load() clamps musicVol and removes level numbers outside 1-3, so a hand-edited file cannot break the game.
 
-13.11.2026 Set Obstacle Mask to the Wall layer so walls block the Patroller's line of sight and prevent it from seeing the player through walls.
-13.11.2026 Tested Patroller's movement between patrol points and checked that the enemy moves correctly without getting stuck.
+## Week 12: Sound Pass
 
-13.11.2026 Tested player detection and verified that the Patroller detects the player when they enter its detection range.
-
-13.11.2026 Tested wall collisions and verified that walls block the enemy's movement and line of sight.
-
-13.11.2026 Tested the Patroller's attack behaviour and verified that it stops chasing the player at the correct distance and starts preparing for an attack.
+2026-11-25  Asked the agent to add sounds to the game. Some sounds were silent because the AudioSource components were not set up: no clip was assigned and the output was not routed to the mixer group. I selected the Player object in Unity, checked its audio components, added the missing clips, routed them to the SFX group and tested in gameplay.
+2026-11-25  Repeated sounds felt flat. Added variation by assigning different clips and changing playback settings (pitch) on the Player, then played the level to confirm the difference is audible.
